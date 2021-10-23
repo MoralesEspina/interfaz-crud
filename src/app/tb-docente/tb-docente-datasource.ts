@@ -22,9 +22,9 @@ const EXAMPLE_DATA: TbDocenteItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
-  data: TbDocenteItem[] = [];
-  paginator: MatPaginator | undefined;
-  sort: MatSort | undefined;
+  data: TbDocenteItem[];
+  paginator: MatPaginator;
+  sort: MatSort;
 
   constructor() {
     super();

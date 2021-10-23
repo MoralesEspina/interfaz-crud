@@ -21,7 +21,7 @@ export interface TbPersonaItem {
  * (including sorting, pagination, and filtering).
  */
 export class TbPersonaDataSource extends DataSource<TbPersonaItem> {
-  data: TbPersonaItem[] = [];
+  data: TbPersonaItem[];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 

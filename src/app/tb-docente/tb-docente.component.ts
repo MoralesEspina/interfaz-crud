@@ -20,6 +20,9 @@ export class TbDocenteComponent implements AfterViewInit {
   displayedColumns = ['id', 'id_persona', 'fecha_ingreso'];
 
   constructor(private docenteService: PersonaService) {
+
+  }
+  ngOnInit(): void {
     this.dataSource = new TbDocenteDataSource();
     this.docenteService.getDocente().subscribe(
       res=>{
