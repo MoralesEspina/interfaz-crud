@@ -1,0 +1,34 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="registro-docente">
+    <mat-card-header>
+      <mat-card-title>Docente</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="ID Persona" formControlName="idpersona">
+              <mat-error *ngIf="addressForm.controls['idpersona'].hasError('required')">
+                El Id Persona es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput type = "date" placeholder="Fecha de Nacimiento" formControlName="fecha_ingreso" [(ngModel)]="fecha_ingreso">
+                <mat-error *ngIf="addressForm.controls['fecha_ingreso'].hasError('required')">
+                  La Fecha de Ingreso es <strong>requerida</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

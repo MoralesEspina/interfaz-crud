@@ -1,0 +1,51 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="registro-persona">
+    <mat-card-header>
+      <mat-card-title>Persona</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nombre">
+            <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
+              El Nombre es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellido" formControlName="apellido" [(ngModel)]="apellido">
+            <mat-error *ngIf="addressForm.controls['apellido'].hasError('required')">
+              El Apellido es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field >
+            <input matInput type = "date" placeholder="Fecha de Nacimiento" formControlName="fechanac" [(ngModel)]="fechanac">
+            <mat-error *ngIf="addressForm.controls['fechanac'].hasError('required')">
+              La Fecha de Nacimiento es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Dirección" formControlName="direccion" [(ngModel)]="direccion">
+            <mat-error *ngIf="addressForm.controls['direccion'].hasError('required')">
+              La Dirección es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
