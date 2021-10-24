@@ -1,9 +1,9 @@
-import { TbDocenteItem } from './../tb-docente/tb-docente-datasource';
-import { TbEstudianteItem } from './../tb-estudiante/tb-estudiante-datasource';
+import { TbDocenteItem } from '../tablas/tb-docente/tb-docente-datasource';
+import { TbEstudianteItem } from '../tablas/tb-estudiante/tb-estudiante-datasource';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TbPersonaItem } from '../tb-persona/tb-persona-datasource';
+import { TbPersonaItem } from '../tablas/tb-persona/tb-persona-datasource';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,18 @@ export class PersonaService {
 
   getPersona(): Observable<TbPersonaItem[]>{
     return this.httpersona.get<TbPersonaItem[]>(this.URL)
+  }
+
+  deleteUsuario(id: number){
+    this.httpersona.delete(this.URL+'/'+id).subscribe(
+      res => console.log(res)
+    )
+  }
+
+  agregarPersona(usuario: {}){
+    this.httpersona.post(this.URL, usuario).subscribe(
+      res => console.log(res)
+    )
   }
 
   getEstudiante(): Observable<TbEstudianteItem[]>{

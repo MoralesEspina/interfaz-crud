@@ -5,9 +5,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/Angular/interfazCrud/src/app/personas/personas.component.ts">Mantenimiento Persona</a>
-      <a mat-list-item href="/Angular/interfazCrud/src/app/estudiante/estudiante.component.ts">Mantenimiento Estudiante</a>
-      <a mat-list-item href="#">Mantenimiento Docentes</a>
+      <a mat-list-item routerLink= "/tb_persona">Personas</a>
+      <a mat-list-item routerLink= "/tb_estudiante">Estudiantes</a>
+      <a mat-list-item routerLink= "/tb_docente">Docentes</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,6 +22,6 @@
       </button>
       <span>interfazCrud</span>
     </mat-toolbar>
-    <app-tb-docente></app-tb-docente>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

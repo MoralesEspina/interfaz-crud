@@ -4,25 +4,16 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface TbDocenteItem {
-  id: number;
-  id_persona: number;
-  fecha_ingreso: string;
+export interface TbPersonaItem {
+  "id": number,
+  "nombre":string,
+  "apellido":string,
+  "fecha_nacimiento":string,
+  "direccion":string
 }
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: TbDocenteItem[] = [
-
-];
-
-/**
- * Data source for the TbDocente view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
-  data: TbDocenteItem[];
+export class TbPersonaDataSource extends DataSource<TbPersonaItem>  {
+  data: TbPersonaItem[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
@@ -30,12 +21,13 @@ export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
     super();
   }
 
+
   /**
    * Connect this data source to the table. The table will only update when
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<TbDocenteItem[]> {
+  connect(): Observable<TbPersonaItem[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -58,7 +50,7 @@ export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: TbDocenteItem[]): TbDocenteItem[] {
+  private getPagedData(data: TbPersonaItem[]): TbPersonaItem[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -71,7 +63,7 @@ export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: TbDocenteItem[]): TbDocenteItem[] {
+  private getSortedData(data: TbPersonaItem[]): TbPersonaItem[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -79,6 +71,7 @@ export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
+        case 'nombre': return compare(a.nombre, b.nombre, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }

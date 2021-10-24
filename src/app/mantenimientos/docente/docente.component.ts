@@ -2,24 +2,21 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-estudiante',
-  templateUrl: './estudiante.component.html',
-  styleUrls: ['./estudiante.component.css']
+  selector: 'app-docente',
+  templateUrl: './docente.component.html',
+  styleUrls: ['./docente.component.css']
 })
-export class EstudianteComponent {
+export class DocenteComponent {
   addressForm = this.fb.group({
     idpersona: [null, Validators.required],
     fecha_ingreso: [null, Validators.required],
-    carnet: [null, Validators.required],
-    status: [null, Validators.required]
 
+    shipping: ['free', Validators.required]
   });
 
   hasUnitNumber = false;
-  id_persona: number | undefined;
-  fecha_ingreso: Date | undefined;
-  carnet: string | undefined;
-  status: string | undefined;
+  id_persona: number;
+  fecha_ingreso: Date;
 
 
 

@@ -27,7 +27,7 @@ const EXAMPLE_DATA: TbEstudianteItem[] = [
  */
 
 export class TbEstudianteDataSource extends DataSource<TbEstudianteItem> {
-  data: TbEstudianteItem[];
+  data: TbEstudianteItem[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
