@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Nombre" formControlName="nombre" [(ngModel)]="nombre">
+            <input [(ngModel)]="_persona.nombre" matInput placeholder="Nombre" formControlName="nombre">
             <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
               El Nombre es <strong>requerido</strong>
             </mat-error>
@@ -16,7 +16,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Apellido" formControlName="apellido" [(ngModel)]="apellido">
+            <input [(ngModel)]="_persona.apellido" matInput placeholder="Apellido" formControlName="apellido">
             <mat-error *ngIf="addressForm.controls['apellido'].hasError('required')">
               El Apellido es <strong>requerido</strong>
             </mat-error>
@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field >
-            <input matInput type = "date" placeholder="Fecha de Nacimientos" formControlName="fecha_nacimiento" [(ngModel)]="fecha_nacimiento">
+            <input [(ngModel)]="_persona.fecha_nacimiento" matInput type = "date" placeholder="Fecha de Nacimiento" formControlName="fecha_nacimiento" >
             <mat-error *ngIf="addressForm.controls['fecha_nacimiento'].hasError('required')">
               La Fecha de Nacimiento es <strong>requerida</strong>
             </mat-error>
@@ -35,17 +35,15 @@
         </div>
 
           <mat-form-field class="full-width">
-            <input matInput placeholder="Dirección" formControlName="direccion" [(ngModel)]="direccion">
+            <input [(ngModel)]="_persona.direccion" matInput placeholder="Dirección" formControlName="direccion">
             <mat-error *ngIf="addressForm.controls['direccion'].hasError('required')">
               La Dirección es <strong>requerida</strong>
             </mat-error>
           </mat-form-field>
         </div>
-
-
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" [disabled] = "addressForm.invalid" type="submit" >Crear Persona</button>
+      <button mat-raised-button color="primary" [disabled] = "addressForm.invalid" type="submit" >Guardar</button>
     </mat-card-actions>
   </mat-card>
 </form>

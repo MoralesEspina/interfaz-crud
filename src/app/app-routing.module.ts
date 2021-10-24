@@ -13,7 +13,8 @@ export const routes: Routes = [
   { path: 'tb_estudiante', component: TbEstudianteComponent },
   { path: 'persona', component: PersonasComponent },
   { path: 'docente', component: DocenteComponent },
-  { path: 'estudiante', component: EstudianteComponent }
+  { path: 'estudiante', component: EstudianteComponent },
+  { path: 'persona/:id', component: PersonasComponent },
 
 ];
 
