@@ -8,8 +8,8 @@ import { OnInit } from '@angular/core';
 // TODO: Replace this with your own data model type
 export interface TbDocenteItem {
   "id": number;
-  "id_persona": number;
-  "fecha_ingreso": Date;
+  "idpersona": number;
+  "fecha_ingreso": string;
 }
 
 // TODO: replace this with real data from your application

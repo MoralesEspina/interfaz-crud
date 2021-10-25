@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { PersonaService } from '../../services/persona.service';
+import { Router } from '@angular/router';
+import { RegistroService } from '../../services/registros.service';
 import { TbEstudianteDataSource, TbEstudianteItem } from './tb-estudiante-datasource';
 
 @Component({
@@ -17,16 +19,26 @@ export class TbEstudianteComponent implements AfterViewInit {
   dataSource: TbEstudianteDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'id_persona', 'fecha_ingreso', 'carnet', 'status'];
+  displayedColumns = ['id', 'idpersona', 'fecha_ingreso', 'carnet', 'status', 'acciones'];
 
-  constructor(private estudianteService: PersonaService) {
+  constructor(private _estudianteService: RegistroService, private _snackBar: MatSnackBar, private _router : Router) {
     this.dataSource = new TbEstudianteDataSource();
-    this.estudianteService.getEstudiante().subscribe(
+    this._estudianteService.getEstudiante().subscribe(
       res=>{
         console.log(res);
         this.dataSource.data = res;
       }
     )
+  }
+
+  eliminarEstudiante(id:number){
+    this._estudianteService.deleteEstudiante(id);
+    this._snackBar.open('La Persona Fue Eliminada Con Éxito','',
+    {
+      duration:2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
   }
 
   ngAfterViewInit(): void {

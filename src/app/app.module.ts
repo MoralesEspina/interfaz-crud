@@ -43,7 +43,7 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
     PersonasComponent,
     TbPersonaComponent,
     TbEstudianteComponent,
-    TbDocenteComponent
+    TbDocenteComponent,
 
   ],
   imports: [

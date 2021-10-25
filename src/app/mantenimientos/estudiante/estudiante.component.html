@@ -1,14 +1,13 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="addressForm" novalidate (ngSubmit)="crearEstudiante()">
   <mat-card class="registro-estudiante">
     <mat-card-header>
       <mat-card-title>Estudiante</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="ID Persona" formControlName="idpersona">
+            <input [(ngModel)]="_estudiante.idpersona"  matInput placeholder="ID Persona" formControlName="idpersona">
             <mat-error *ngIf="addressForm.controls['idpersona'].hasError('required')">
               El Id Persona es <strong>requerido</strong>
             </mat-error>
@@ -18,7 +17,7 @@
 
           <div class="col">
             <mat-form-field class="full-width">
-              <input matInput type = "date" placeholder="Fecha de Nacimiento" formControlName="fecha_ingreso" [(ngModel)]="fecha_ingreso">
+              <input [(ngModel)]="_estudiante.fecha_ingreso" matInput type = "date" placeholder="Fecha de Nacimiento" formControlName="fecha_ingreso" >
               <mat-error *ngIf="addressForm.controls['fecha_ingreso'].hasError('required')">
                 La Fecha de Ingreso es <strong>requerida</strong>
               </mat-error>
@@ -28,7 +27,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Carnet" formControlName="carnet">
+            <input [(ngModel)]="_estudiante.carnet" matInput placeholder="Carnet" formControlName="carnet">
             <mat-error *ngIf="addressForm.controls['carnet'].hasError('required')">
               El Carnet es <strong>requerido</strong>
             </mat-error>
@@ -37,7 +36,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Status" formControlName="status">
+            <input [(ngModel)]="_estudiante.status" matInput placeholder="Status" formControlName="status">
             <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
               El Status es <strong>requerido</strong>
             </mat-error>
@@ -47,7 +46,7 @@
 
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" [disabled] = "addressForm.invalid" type="submit" >Guardar</button>
     </mat-card-actions>
   </mat-card>
 </form>

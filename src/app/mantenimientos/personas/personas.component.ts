@@ -1,5 +1,5 @@
 import { Persona } from './../../interfaces/persona';
-import { PersonaService } from './../../services/persona.service';
+import { RegistroService } from '../../services/registros.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,21 +21,17 @@ export class PersonasComponent implements OnInit {
   };
 
   addressForm = this.fb.group({
-
     nombre: [null, Validators.required],
     apellido: [null, Validators.required],
     fecha_nacimiento: [null, Validators.required],
     direccion: [null, Validators.required],
-
   });
 
   hasUnitNumber = false;
 
   editing: boolean = false;
 
-
-
-  constructor(private fb: FormBuilder, private _personaService: PersonaService,
+  constructor(private fb: FormBuilder, private _personaService: RegistroService,
     private _snackBar: MatSnackBar,
     private _router: Router,
     private _activatedRoute: ActivatedRoute) {

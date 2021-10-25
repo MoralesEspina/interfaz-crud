@@ -7,8 +7,8 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 // TODO: Replace this with your own data model type
 export interface TbEstudianteItem {
 
-  id: string;
-  id_persona: number;
+  id: number;
+  idpersona: number;
   fecha_ingreso: string;
   carnet: string;
   status: string;

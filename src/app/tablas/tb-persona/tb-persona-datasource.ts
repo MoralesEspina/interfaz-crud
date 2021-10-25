@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { RegistroService } from 'src/app/services/registros.service';
 
 export interface TbPersonaItem {
   "id": number,
@@ -17,8 +18,13 @@ export class TbPersonaDataSource extends DataSource<TbPersonaItem>  {
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(private registro: RegistroService) {
     super();
+    registro.getPersona().subscribe(
+      res=>{
+        this.data = res;
+      }
+    );
   }
 
   connect(): Observable<TbPersonaItem[]> {

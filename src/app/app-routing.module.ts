@@ -15,6 +15,8 @@ export const routes: Routes = [
   { path: 'docente', component: DocenteComponent },
   { path: 'estudiante', component: EstudianteComponent },
   { path: 'persona/:id', component: PersonasComponent },
+  { path: 'docente/:id', component: DocenteComponent },
+  { path: 'estudiante/:id', component: EstudianteComponent },
 
 ];
 
