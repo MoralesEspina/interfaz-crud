@@ -36,7 +36,7 @@ export class TbDocenteComponent implements AfterViewInit, OnInit {
   }
 
   eliminarDocente(id:number){
-    this._docenteService.deletePersona(id);
+    this._docenteService.deleteDocente(id);
 
     this._snackBar.open('El Docente Fue Eliminado Con Éxito','',
     {
@@ -44,6 +44,7 @@ export class TbDocenteComponent implements AfterViewInit, OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     })
+    setTimeout(location.reload.bind(location), 500);
   }
 
 

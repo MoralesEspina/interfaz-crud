@@ -18,13 +18,8 @@ export class TbPersonaDataSource extends DataSource<TbPersonaItem>  {
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor(private registro: RegistroService) {
+  constructor() {
     super();
-    registro.getPersona().subscribe(
-      res=>{
-        this.data = res;
-      }
-    );
   }
 
   connect(): Observable<TbPersonaItem[]> {

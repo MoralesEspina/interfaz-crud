@@ -39,6 +39,7 @@ export class TbEstudianteComponent implements AfterViewInit {
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     })
+    setTimeout(location.reload.bind(location), 500);
   }
 
   ngAfterViewInit(): void {
