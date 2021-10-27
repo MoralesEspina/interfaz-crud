@@ -1,5 +1,5 @@
-import { Persona } from './../../interfaces/persona';
-import { RegistroService } from '../../services/registros.service';
+import { PersonaService } from '../../../services/persona.service';
+import { Persona } from '../../../interface/persona';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -31,7 +31,7 @@ export class PersonasComponent implements OnInit {
 
   editing: boolean = false;
 
-  constructor(private fb: FormBuilder, private _personaService: RegistroService,
+  constructor(private fb: FormBuilder, private _personaService: PersonaService,
     private _snackBar: MatSnackBar,
     private _router: Router,
     private _activatedRoute: ActivatedRoute) {

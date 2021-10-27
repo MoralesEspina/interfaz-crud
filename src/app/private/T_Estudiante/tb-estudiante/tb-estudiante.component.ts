@@ -1,10 +1,10 @@
+import { EstudianteService } from '../../../services/estudiante.service';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { RegistroService } from '../../services/registros.service';
 import { TbEstudianteDataSource, TbEstudianteItem } from './tb-estudiante-datasource';
 
 @Component({
@@ -21,7 +21,7 @@ export class TbEstudianteComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'idpersona', 'fecha_ingreso', 'carnet', 'status', 'acciones'];
 
-  constructor(private _estudianteService: RegistroService, private _snackBar: MatSnackBar, private _router : Router) {
+  constructor(private _estudianteService: EstudianteService, private _snackBar: MatSnackBar, private _router : Router) {
     this.dataSource = new TbEstudianteDataSource();
     this._estudianteService.getEstudiante().subscribe(
       res=>{

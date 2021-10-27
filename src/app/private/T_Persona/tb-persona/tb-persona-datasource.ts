@@ -1,9 +1,9 @@
+import { PersonaService } from '../../../services/persona.service';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { RegistroService } from 'src/app/services/registros.service';
 
 export interface TbPersonaItem {
   "id": number,
@@ -14,14 +14,23 @@ export interface TbPersonaItem {
 }
 
 export class TbPersonaDataSource extends DataSource<TbPersonaItem>  {
-  data: TbPersonaItem[] = [];
+  data : TbPersonaItem[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(_personaService:PersonaService) {
     super();
-  }
 
+    _personaService.getPersona().subscribe(
+      res=>{
+        this.data = res;
+        console.log(res);
+      }
+    )
+  }
+  cargarUsuario(){
+
+  }
   connect(): Observable<TbPersonaItem[]> {
     if (this.paginator && this.sort) {
       return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)

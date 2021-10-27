@@ -1,50 +1,56 @@
+import { EstudianteService } from '../../../services/estudiante.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Docente } from 'src/app/interfaces/docente';
-import { RegistroService } from 'src/app/services/registros.service';
+import { Estudiante } from 'src/app/interface/estudiante';
 
 @Component({
-  selector: 'app-docente',
-  templateUrl: './docente.component.html',
-  styleUrls: ['./docente.component.css']
+  selector: 'app-estudiante',
+  templateUrl: './estudiante.component.html',
+  styleUrls: ['./estudiante.component.css']
 })
-export class DocenteComponent implements OnInit {
+export class EstudianteComponent implements OnInit {
 
-  _docente: Docente ={
+  _estudiante:Estudiante ={
     id: 0,
     idpersona: 0,
-    fecha_ingreso: ''
-  }
+    fecha_ingreso: '',
+    carnet: '',
+    status: ''
+  };
+
 
   addressForm = this.fb.group({
     idpersona: [null, Validators.required],
     fecha_ingreso: [null, Validators.required],
+    carnet: [null, Validators.required],
+    status: [null, Validators.required]
+
   });
+
 
   hasUnitNumber = false;
 
   editing: boolean = false;
 
-  constructor(private fb: FormBuilder, private _docenteService: RegistroService,
+  constructor(private fb: FormBuilder, private _estudianteService: EstudianteService,
     private _snackBar: MatSnackBar,
     private _router: Router,
     private _activatedRoute: ActivatedRoute) {
 
   }
   ngOnInit(): void {
-    this.cargarDocente();
+    this.cargarEstudiante();
   }
 
-  cargarDocente() {
+  cargarEstudiante() {
     const id_entrada = this._activatedRoute.snapshot.params.id;
-
     if (id_entrada) {
       this.editing = true;
-      this._docenteService.getDocenteIndividual(id_entrada).subscribe(
+      this._estudianteService.getEstudianteIndividual(id_entrada).subscribe(
         res => {
-          this._docente = res[0];
+          this._estudiante = res[0];
           console.log(res[0]);
         },
         err => console.log(err)
@@ -54,12 +60,12 @@ export class DocenteComponent implements OnInit {
     }
   }
 
-  crearDocente() {
+  crearEstudiante() {
     if(this.editing){
 
-      this._docenteService.modificarDocente(this._docente.id, this._docente);
-      this._router.navigate(['/tb_docente']);
-      this._snackBar.open('El Docente Fue Modificado Con Éxito', '',
+      this._estudianteService.modificarEstudiante(this._estudiante.id, this._estudiante);
+      this._router.navigate(['/tb_estudiante']);
+      this._snackBar.open('La Persona Fue Modificada Con Éxito', '',
       {
         duration: 2000,
         horizontalPosition: 'center',
@@ -67,14 +73,16 @@ export class DocenteComponent implements OnInit {
       })
 
     }else{
-    const docente: Docente = {
+    const estudiante: Estudiante = {
       id: 0,
       idpersona: this.addressForm.value.idpersona,
       fecha_ingreso: this.addressForm.value.fecha_ingreso,
+      carnet: this.addressForm.value.carnet,
+      status: this.addressForm.value.status,
     }
-    this._docenteService.agregarDocente(docente);
-    this._router.navigate(["/tb_docente"]);
-    this._snackBar.open('El Docente Fue Creado Con Éxito', '',
+    this._estudianteService.agregarEstudiante(estudiante);
+    this._router.navigate(["/tb_estudiante"]);
+    this._snackBar.open('El Estudiante Fue Creado Con Éxito', '',
       {
         duration: 2000,
         horizontalPosition: 'center',

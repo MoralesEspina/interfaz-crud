@@ -1,10 +1,10 @@
+import { DocenteService } from '../../../services/docente.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { RegistroService } from '../../services/registros.service';
 import { TbDocenteDataSource, TbDocenteItem } from './tb-docente-datasource';
 
 @Component({
@@ -21,7 +21,7 @@ export class TbDocenteComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'idpersona', 'fecha_ingreso', 'acciones'];
 
-  constructor(private _docenteService: RegistroService, private _snackBar: MatSnackBar, private _router : Router) {
+  constructor(private _docenteService: DocenteService, private _snackBar: MatSnackBar, private _router : Router) {
 
   }
 
