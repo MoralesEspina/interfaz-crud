@@ -1,3 +1,4 @@
+import { InterceptorService } from './services/interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -25,13 +26,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TbPersonaComponent } from './private/T_Persona/tb-persona/tb-persona.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TbEstudianteComponent } from './private/T_Estudiante/tb-estudiante/tb-estudiante.component';
 import { TbDocenteComponent } from './private/T_Docente/tb-docente/tb-docente.component';
 import { RouterModule} from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './public/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -73,7 +75,12 @@ import { LoginComponent } from './public/login/login.component';
     MatTooltipModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

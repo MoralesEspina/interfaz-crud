@@ -5,10 +5,17 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink= "/login">Login</a>
+      <ng-container *ngIf="!logedIn(); else elseTemplate">
+        <a mat-list-item routerLink= "/login">Log In</a>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <a mat-list-item (click)="onLogOut()" routerLink= "/login">Log Out</a>
+      </ng-template>
+
       <a mat-list-item routerLink= "/tb_persona">Personas</a>
       <a mat-list-item routerLink= "/tb_estudiante">Estudiantes</a>
       <a mat-list-item routerLink= "/tb_docente">Docentes</a>
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

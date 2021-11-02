@@ -10,8 +10,8 @@ export class SecurityService {
   URL = "https://crud-segundoparcial-dw.herokuapp.com";
   constructor(private http : HttpClient) { }
 
-  login(userName: string ){
-    return this.http.post<any>(this.URL + '/login',userName);
+  login(user: Usuario ){
+    return this.http.post<any>(this.URL + '/login',user);
   }
 
   logout(){

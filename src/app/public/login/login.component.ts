@@ -29,7 +29,7 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private _security: SecurityService, private _router: Router) {}
 
   onLogin() {
-    this._security.login(this._usuario.userName).subscribe(
+    this._security.login(this._usuario).subscribe(
       (res) =>{
         localStorage.setItem('token', res.token);
         this._router.navigate(['tb_persona']);

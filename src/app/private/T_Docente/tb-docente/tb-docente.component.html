@@ -6,14 +6,13 @@
     <div class = "example-spacer"></div>
     <button mat-flat-button color="primary" routerLink = "/docente"  >Agregar</button>
   </mat-toolbar>
-  <table mat-table class="full-width-table" matSort aria-label="Elements">s
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
 
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
       <td mat-cell *matCellDef="let row">{{row.id}}</td>
     </ng-container>
-
 
     <ng-container matColumnDef="idpersona">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Persona</th>

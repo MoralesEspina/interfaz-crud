@@ -1,3 +1,4 @@
+import { SecurityService } from './../services/security.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -17,6 +18,14 @@ export class NavBarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router:Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private _router:Router, private _security: SecurityService) {}
 
+  logedIn(){
+    return this._security.logedIn();
+  }
+
+  onLogOut(){
+       this._security.logout();
+       this._router.navigate(['login']);
+  }
 }
