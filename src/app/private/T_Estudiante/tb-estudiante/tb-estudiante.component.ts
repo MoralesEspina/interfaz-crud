@@ -19,7 +19,7 @@ export class TbEstudianteComponent implements AfterViewInit {
   dataSource: TbEstudianteDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'idpersona', 'fecha_ingreso', 'carnet', 'status', 'acciones'];
+  displayedColumns = ['id', 'idpersona','nombre', 'apellido', 'fecha_ingreso', 'carnet', 'status', 'acciones'];
 
   constructor(private _estudianteService: EstudianteService, private _snackBar: MatSnackBar, private _router : Router) {
     this.dataSource = new TbEstudianteDataSource();

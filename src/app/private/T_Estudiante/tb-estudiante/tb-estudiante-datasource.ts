@@ -10,6 +10,8 @@ export interface TbEstudianteItem {
   id: number;
   idpersona: number;
   fecha_ingreso: string;
+  nombre: string;
+  apellido: string;
   carnet: string;
   status: string;
 

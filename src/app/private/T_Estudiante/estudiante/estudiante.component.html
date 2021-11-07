@@ -16,7 +16,7 @@
 
           <div class="col">
             <mat-form-field class="full-width">
-              <input [(ngModel)]="_estudiante.fecha_ingreso" matInput type = "date" placeholder="Fecha de Nacimiento" formControlName="fecha_ingreso" >
+              <input [(ngModel)]="_estudiante.fecha_ingreso" matInput type = "date" placeholder="Fecha de Ingreso" formControlName="fecha_ingreso" >
               <mat-error *ngIf="addressForm.controls['fecha_ingreso'].hasError('required')">
                 La Fecha de Ingreso es <strong>requerida</strong>
               </mat-error>

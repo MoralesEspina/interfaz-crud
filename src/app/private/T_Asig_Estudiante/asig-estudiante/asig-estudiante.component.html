@@ -1,0 +1,61 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onCrearAsignacion()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Asignación de Estudiante</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="_asigEstudiante.id_estudiante"  matInput placeholder="ID de Estudiante" formControlName="id_estudiante">
+            <mat-error *ngIf="addressForm.controls['id_estudiante'].hasError('required')">
+              El Id del Estudiante es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input [(ngModel)]="_asigEstudiante.id_curso" matInput type = "date" placeholder="ID de Curso" formControlName="id_curso" >
+              <mat-error *ngIf="addressForm.controls['id_curso'].hasError('required')">
+               El ID de Curso es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="_asigEstudiante.status" matInput placeholder="Status" formControlName="status">
+            <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
+              El Status es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input [(ngModel)]="_asigEstudiante.fecha_inicio" type = "date" matInput placeholder="Fecha de Inicio" formControlName="fecha_inicio">
+            <mat-error *ngIf="addressForm.controls['fecha_inicio'].hasError('required')">
+              La Fecha de Inicio es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input [(ngModel)]="_asigEstudiante.fecha_fin" type = "date" matInput placeholder="Fecha Final" formControlName="fecha_fin">
+          <mat-error *ngIf="addressForm.controls['fecha_fin'].hasError('required')">
+            La Fecha final es <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

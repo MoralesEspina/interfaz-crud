@@ -19,7 +19,7 @@ export class TbDocenteComponent implements AfterViewInit, OnInit {
   dataSource: TbDocenteDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'idpersona', 'fecha_ingreso', 'acciones'];
+  displayedColumns = ['id', 'idpersona', 'fecha_ingreso','nombre','apellido', 'acciones'];
 
   constructor(private _docenteService: DocenteService, private _snackBar: MatSnackBar, private _router : Router) {
 

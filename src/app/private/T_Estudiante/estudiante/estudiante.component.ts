@@ -15,6 +15,8 @@ export class EstudianteComponent implements OnInit {
   _estudiante:Estudiante ={
     id: 0,
     idpersona: 0,
+    nombre: '',
+    apellido: '',
     fecha_ingreso: '',
     carnet: '',
     status: ''
@@ -76,6 +78,8 @@ export class EstudianteComponent implements OnInit {
     const estudiante: Estudiante = {
       id: 0,
       idpersona: this.addressForm.value.idpersona,
+      nombre: '',
+      apellido:'',
       fecha_ingreso: this.addressForm.value.fecha_ingreso,
       carnet: this.addressForm.value.carnet,
       status: this.addressForm.value.status,

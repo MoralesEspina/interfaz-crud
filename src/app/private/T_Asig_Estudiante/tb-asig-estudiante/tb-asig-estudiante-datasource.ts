@@ -3,33 +3,23 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { OnInit } from '@angular/core';
+import { AsigEstudiante } from 'src/app/interface/asigEstudiante';
 
 // TODO: Replace this with your own data model type
-export interface TbDocenteItem {
-  "id": number;
-  "idpersona": number;
-  "nombre": string,
-  "apellido": string,
-  "fecha_ingreso": string;
-}
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: TbDocenteItem[] = [];
 
 /**
- * Data source for the TbDocente view. This class should
+ * Data source for the TbAsigEstudiante view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
-  data: TbDocenteItem[] = [];
-  paginator: MatPaginator;
-  sort: MatSort;
-
+export class TbAsigEstudianteDataSource extends DataSource<AsigEstudiante> {
+  data: AsigEstudiante[] = [];
+  paginator: MatPaginator | undefined;
+  sort: MatSort | undefined;
 
   constructor() {
-
     super();
   }
 
@@ -38,41 +28,44 @@ export class TbDocenteDataSource extends DataSource<TbDocenteItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<TbDocenteItem[]> {
-
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
-
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+  connect(): Observable<AsigEstudiante[]> {
+    if (this.paginator && this.sort) {
+      // Combine everything that affects the rendered data into one update
+      // stream for the data-table to consume.
+      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
+        .pipe(map(() => {
+          return this.getPagedData(this.getSortedData([...this.data ]));
+        }));
+    } else {
+      throw Error('Please set the paginator and sort on the data source before connecting.');
+    }
   }
-
 
   /**
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect(): void {}
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: TbDocenteItem[]) {
+  private getPagedData(data: AsigEstudiante[]): AsigEstudiante[] {
+    if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
+    } else {
+      return data;
+    }
   }
 
   /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: TbDocenteItem[]) {
-    if (!this.sort.active || this.sort.direction === '') {
+  private getSortedData(data: AsigEstudiante[]): AsigEstudiante[] {
+    if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
 

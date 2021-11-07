@@ -15,6 +15,8 @@ export class DocenteComponent implements OnInit {
   _docente: Docente ={
     id: 0,
     idpersona: 0,
+    nombre: '',
+    apellido: '',
     fecha_ingreso: ''
   }
 
@@ -69,6 +71,8 @@ export class DocenteComponent implements OnInit {
     }else{
     const docente: Docente = {
       id: 0,
+      nombre: '',
+      apellido: '',
       idpersona: this.addressForm.value.idpersona,
       fecha_ingreso: this.addressForm.value.fecha_ingreso,
     }

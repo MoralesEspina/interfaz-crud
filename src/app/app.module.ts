@@ -34,6 +34,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './public/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { CursoComponent } from './private/T_Cursos/curso/curso.component';
+import { TbCursoComponent } from './private/T_Cursos/tb-curso/tb-curso.component';
+import { AsigEstudianteComponent } from './private/T_Asig_Estudiante/asig-estudiante/asig-estudiante.component';
+import { TbAsigEstudianteComponent } from './private/T_Asig_Estudiante/tb-asig-estudiante/tb-asig-estudiante.component';
+
+
+
 
 
 @NgModule({
@@ -48,6 +55,10 @@ import { AuthGuard } from './auth.guard';
     TbEstudianteComponent,
     TbDocenteComponent,
     LoginComponent,
+    CursoComponent,
+    TbCursoComponent,
+    AsigEstudianteComponent,
+    TbAsigEstudianteComponent,
 
   ],
   imports: [
