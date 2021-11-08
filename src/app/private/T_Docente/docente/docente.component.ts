@@ -4,6 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Docente } from 'src/app/interface/docente';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-docente',
@@ -20,25 +23,38 @@ export class DocenteComponent implements OnInit {
     fecha_ingreso: ''
   }
 
+
+
   addressForm = this.fb.group({
     idpersona: [null, Validators.required],
     fecha_ingreso: [null, Validators.required],
   });
 
-  hasUnitNumber = false;
 
   editing: boolean = false;
+
+  collection = [{'id': this.getCollection}];
 
   constructor(private fb: FormBuilder, private _docenteService: DocenteService,
     private _snackBar: MatSnackBar,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) {
+    private _activatedRoute: ActivatedRoute,
+    private http:HttpClient) {
 
   }
   ngOnInit(): void {
     this.cargarDocente();
+    this.getCollection();
   }
 
+  getCollection() {
+    this.http
+      .get<any>('https://crud-segundoparcial-dw.herokuapp.com/personas').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
+  }
   cargarDocente() {
     const id_entrada = this._activatedRoute.snapshot.params.id;
 

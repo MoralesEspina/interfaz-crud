@@ -8,13 +8,14 @@
         <div class="row">
           <div class="col">
             <mat-form-field class="full-width">
-              <input matInput [(ngModel)]="_docente.idpersona" placeholder="ID Persona" formControlName="idpersona">
-              <mat-error *ngIf="addressForm.controls['idpersona'].hasError('required')">
-                El Id Persona es <strong>requerido</strong>
-              </mat-error>
+              <mat-label>ID Persona</mat-label>
+                      <mat-select formControlName="idpersona" placeholder="ID Persona" [(ngModel)]="_docente.idpersona">
+                        <mat-option *ngFor="let persona of collection" [value]="persona.id">
+                          {{persona.id}}
+                        </mat-option>
+                      </mat-select>
             </mat-form-field>
           </div>
-
 
             <div class="col">
               <mat-form-field class="full-width">
@@ -29,6 +30,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" [disabled] = "addressForm.invalid" type="submit" >Guardar</button>
+        <button mat-raised-button routerLink = "/tb_docente"color="primary" type= "button">Regresar</button>
       </mat-card-actions>
     </mat-card>
   </form>

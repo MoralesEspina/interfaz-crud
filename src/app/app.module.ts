@@ -38,6 +38,8 @@ import { CursoComponent } from './private/T_Cursos/curso/curso.component';
 import { TbCursoComponent } from './private/T_Cursos/tb-curso/tb-curso.component';
 import { AsigEstudianteComponent } from './private/T_Asig_Estudiante/asig-estudiante/asig-estudiante.component';
 import { TbAsigEstudianteComponent } from './private/T_Asig_Estudiante/tb-asig-estudiante/tb-asig-estudiante.component';
+import { AsigDocenteComponent } from './private/T_Asig_Docente/asig-docente/asig-docente.component';
+import { TbAsigDocenteComponent } from './private/T_Asig_Docente/tb-asig-docente/tb-asig-docente.component';
 
 
 
@@ -59,6 +61,8 @@ import { TbAsigEstudianteComponent } from './private/T_Asig_Estudiante/tb-asig-e
     TbCursoComponent,
     AsigEstudianteComponent,
     TbAsigEstudianteComponent,
+    AsigDocenteComponent,
+    TbAsigDocenteComponent,
 
   ],
   imports: [

@@ -4,6 +4,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Estudiante } from 'src/app/interface/estudiante';
+import { HttpClient } from '@angular/common/http';
+
+interface Estado{
+  nombre: string;
+}
 
 @Component({
   selector: 'app-estudiante',
@@ -22,6 +27,10 @@ export class EstudianteComponent implements OnInit {
     status: ''
   };
 
+  _estado: Estado[] = [
+    {nombre: 'Activo'},
+    {nombre: 'Inactivo'},
+  ];
 
   addressForm = this.fb.group({
     idpersona: [null, Validators.required],
@@ -32,18 +41,30 @@ export class EstudianteComponent implements OnInit {
   });
 
 
-  hasUnitNumber = false;
 
   editing: boolean = false;
+
+  collection = [{'id': this.getCollection}];
 
   constructor(private fb: FormBuilder, private _estudianteService: EstudianteService,
     private _snackBar: MatSnackBar,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) {
+    private _activatedRoute: ActivatedRoute,
+    private http:HttpClient) {
 
   }
   ngOnInit(): void {
     this.cargarEstudiante();
+    this.getCollection();
+  }
+
+  getCollection() {
+    this.http
+      .get<any>('https://crud-segundoparcial-dw.herokuapp.com/personas').subscribe((res: any) => {
+        this.collection = res;
+      }, error => {
+        console.log({ error });
+      })
   }
 
   cargarEstudiante() {

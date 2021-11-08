@@ -7,10 +7,11 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input [(ngModel)]="_estudiante.idpersona"  matInput placeholder="ID Persona" formControlName="idpersona">
-            <mat-error *ngIf="addressForm.controls['idpersona'].hasError('required')">
-              El Id Persona es <strong>requerido</strong>
-            </mat-error>
+            <mat-select formControlName="idpersona" placeholder="ID Persona" [(ngModel)]="_estudiante.idpersona">
+              <mat-option *ngFor="let persona of collection" [value]="persona.id">
+                {{persona.id}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
 
@@ -35,10 +36,11 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input [(ngModel)]="_estudiante.status" matInput placeholder="Status" formControlName="status">
-            <mat-error *ngIf="addressForm.controls['status'].hasError('required')">
-              El Status es <strong>requerido</strong>
-            </mat-error>
+            <mat-select formControlName="status" placeholder="Status" [(ngModel)]="_estudiante.status">
+              <mat-option *ngFor="let status of _estado" [value]="status.nombre">
+                {{status.nombre}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>
@@ -46,6 +48,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" [disabled] = "addressForm.invalid" type="submit" >Guardar</button>
+      <button mat-raised-button routerLink = "/tb_estudiante"color="primary" type= "button">Regresar</button>
     </mat-card-actions>
   </mat-card>
 </form>

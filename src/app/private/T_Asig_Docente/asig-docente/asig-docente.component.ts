@@ -3,23 +3,23 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AsigEstudiante } from 'src/app/interface/asigEstudiante';
-import { AsigEstudianteService } from 'src/app/services/asigEstudiante';
+import { AsigDocente } from 'src/app/interface/asigDocente';
+import { AsigDocenteService } from 'src/app/services/asigDocente';
 
 interface Estado{
   nombre: string;
 }
 
 @Component({
-  selector: 'app-asig-estudiante',
-  templateUrl: './asig-estudiante.component.html',
-  styleUrls: ['./asig-estudiante.component.css']
+  selector: 'app-asig-docente',
+  templateUrl: './asig-docente.component.html',
+  styleUrls: ['./asig-docente.component.css']
 })
-export class AsigEstudianteComponent implements OnInit{
+export class AsigDocenteComponent implements OnInit {
 
-  _asigEstudiante:AsigEstudiante ={
+  _asigDocente:AsigDocente ={
     id: 0,
-    id_estudiante: 0,
+    id_docente: 0,
     id_curso: 0,
     status: '',
     fecha_inicio: '',
@@ -33,18 +33,19 @@ export class AsigEstudianteComponent implements OnInit{
 
   addressForm = this.fb.group({
     id: [null, Validators.required],
-    id_estudiante: [null, Validators.required],
+    id_docente: [null, Validators.required],
     id_curso: [null, Validators.required],
     status: [null, Validators.required],
     fecha_inicio: [null, Validators.required],
     fecha_fin: [null, Validators.required]
   });
 
-  collection = [{'id': this.getCollection}];
-  collection1 = [{'id': this.getCollection}];
   editing: boolean = false;
 
-  constructor(private fb: FormBuilder, private _asigEstudianteService: AsigEstudianteService,
+  collection = [{'id': this.getCollection}];
+  collection1 = [{'id': this.getCollection}];
+
+  constructor(private fb: FormBuilder, private _asigDocenteService: AsigDocenteService,
     private _snackBar: MatSnackBar,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
@@ -57,7 +58,7 @@ export class AsigEstudianteComponent implements OnInit{
 
   getCollection() {
     this.http
-      .get<any>('https://crud-segundoparcial-dw.herokuapp.com/estudiantes').subscribe((res: any) => {
+      .get<any>('https://crud-segundoparcial-dw.herokuapp.com/maestros').subscribe((res: any) => {
         this.collection = res;
       }, error => {
         console.log({ error });
@@ -74,9 +75,9 @@ export class AsigEstudianteComponent implements OnInit{
     const id_entrada = this._activatedRoute.snapshot.params.id;
     if (id_entrada) {
       this.editing = true;
-      this._asigEstudianteService.getAsignacionIndividual(id_entrada).subscribe(
+      this._asigDocenteService.getAsignacionIndividual(id_entrada).subscribe(
         res => {
-          this._asigEstudiante = res[0];
+          this._asigDocente = res[0];
           console.log(res[0]);
         },
         err => console.log(err)
@@ -89,8 +90,8 @@ export class AsigEstudianteComponent implements OnInit{
   onCrearAsignacion() {
     if(this.editing){
 
-      this._asigEstudianteService.modificarAsignacion(this._asigEstudiante.id, this._asigEstudiante);
-      this._router.navigate(['/tb_asigEstudiante']);
+      this._asigDocenteService.modificarAsignacion(this._asigDocente.id, this._asigDocente);
+      this._router.navigate(['/tb_asigDocente']);
       this._snackBar.open('La Asignación Fue Modificada Con Éxito', '',
       {
         duration: 2000,
@@ -99,16 +100,16 @@ export class AsigEstudianteComponent implements OnInit{
       })
 
     }else{
-    const estudiante: AsigEstudiante = {
+    const estudiante: AsigDocente = {
       id: 0,
-      id_estudiante: this.addressForm.value.id_estudiante,
+      id_docente: this.addressForm.value.id_docente,
       id_curso: this.addressForm.value.id_curso,
       status: this.addressForm.value.status,
       fecha_inicio: this.addressForm.value.fecha_inicio,
       fecha_fin: this.addressForm.value.fecha_fin,
     }
-    this._asigEstudianteService.agregarAsignacion(estudiante);
-    this._router.navigate(["/tb_asigEstudiante"]);
+    this._asigDocenteService.agregarAsignacion(estudiante);
+    this._router.navigate(["/tb_asigDocente"]);
     this._snackBar.open('La Asignación Fue Creado Con Éxito', '',
       {
         duration: 2000,

@@ -1,16 +1,16 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onCrearAsignacion()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Asignación de Estudiante</mat-card-title>
+      <mat-card-title>Asignación de Docente</mat-card-title>
     </mat-card-header>
     <mat-card-content>
 
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select formControlName="id_estudiante" placeholder="ID Estudiante" [(ngModel)]="_asigEstudiante.id_estudiante">
-              <mat-option *ngFor="let estudiante of collection" [value]="estudiante.id">
-                {{estudiante.id}}
+            <mat-select formControlName="id_docente" placeholder="ID Docente" [(ngModel)]="_asigDocente.id_docente">
+              <mat-option *ngFor="let docente of collection" [value]="docente.id">
+                {{docente.id}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -18,7 +18,7 @@
 
           <div class="col">
             <mat-form-field class="full-width">
-              <mat-select formControlName="id_curso" placeholder="ID Curso" [(ngModel)]="_asigEstudiante.id_curso">
+              <mat-select formControlName="id_curso" placeholder="ID Curso" [(ngModel)]="_asigDocente.id_curso">
                 <mat-option *ngFor="let curso of collection1" [value]="curso.id">
                   {{curso.id}}
                 </mat-option>
@@ -29,7 +29,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select formControlName="status" placeholder="Status" [(ngModel)]="_asigEstudiante.status">
+            <mat-select formControlName="status" placeholder="Status" [(ngModel)]="_asigDocente.status">
               <mat-option *ngFor="let status of _estado" [value]="status.nombre">
                 {{status.nombre}}
               </mat-option>
@@ -39,7 +39,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input [(ngModel)]="_asigEstudiante.fecha_inicio" type = "date" matInput placeholder="Fecha de Inicio" formControlName="fecha_inicio">
+            <input [(ngModel)]="_asigDocente.fecha_inicio" type = "date" matInput placeholder="Fecha de Inicio" formControlName="fecha_inicio">
             <mat-error *ngIf="addressForm.controls['fecha_inicio'].hasError('required')">
               La Fecha de Inicio es <strong>requerida</strong>
             </mat-error>
@@ -48,7 +48,7 @@
 
       <div class="col">
         <mat-form-field class="full-width">
-          <input [(ngModel)]="_asigEstudiante.fecha_fin" type = "date" matInput placeholder="Fecha Final" formControlName="fecha_fin">
+          <input [(ngModel)]="_asigDocente.fecha_fin" type = "date" matInput placeholder="Fecha Final" formControlName="fecha_fin">
           <mat-error *ngIf="addressForm.controls['fecha_fin'].hasError('required')">
             La Fecha final es <strong>requerida</strong>
           </mat-error>
@@ -59,7 +59,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Guardar</button>
-      <button mat-raised-button routerLink = "/tb_asigEstudiante"color="primary" type= "button">Regresar</button>
+      <button mat-raised-button routerLink = "/tb_asigDocente"color="primary" type= "button">Regresar</button>
     </mat-card-actions>
   </mat-card>
 </form>
