@@ -5,8 +5,8 @@ import { CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  constructor(private _security: SecurityService, private _router:Router){
+export class AuthGuard /*implements CanActivate*/ {
+  /*constructor(private _security: SecurityService, private _router:Router){
 
   }
   canActivate():  boolean {
@@ -15,6 +15,6 @@ export class AuthGuard implements CanActivate {
     }
     this._router.navigate(['login'])
     return false;
-  }
+  }*/
 
 }
